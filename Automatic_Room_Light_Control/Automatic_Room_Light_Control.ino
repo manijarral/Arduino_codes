@@ -2,8 +2,8 @@
 #include <LiquidCrystal.h>// initialize the library with the numbers of the interface pins
 LiquidCrystal lcd(2, 3, 4, 5, 6, 7);
 
-int e_s1 A0 //echo pin
-int t_s1 A1 //Trigger pin
+#define e_s1 A0 //echo pin
+#define t_s1 A1 //Trigger pin
 
 #define e_s2 A2 //echo pin
 #define t_s2 A3 //Trigger pin
@@ -41,6 +41,7 @@ lcd.clear();
 }
 
 void loop(){ 
+
 //*************************
 ultra_read(t_s1,e_s1,dis_a);delay(30);
 ultra_read(t_s2,e_s2,dis_b);delay(30);
@@ -54,8 +55,8 @@ if(flag2==0){person = person+1;}
 }
 
 if(dis_b<90 && flag2==0){flag2=1;
-if(flag1==0){person = person-1;}
-}
+if(flag1==0){if(person!=0){person = person-1;}
+}}
 
 if(dis_a>90 && dis_b>90 && flag1==1 && flag2==1){
 flag1=0, flag2=0;
